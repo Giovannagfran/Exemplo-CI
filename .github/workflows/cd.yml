@@ -14,10 +14,12 @@ jobs:
         run: docker pull giovannaf/exemplo-ci:latest
 
       - name: Stop Docker container
-        run: docker stop ci-example || true
+        run: docker stop ci-example
+        continue-on-error: true
 
       - name: Remove Docker container
-        run: docker rm ci-example || true
+        run: docker rm ci-example
+        continue-on-error: true
 
       - name: Run Docker container
         run: docker run --name ci-example -d -p 8080:8080 giovannaf/exemplo-ci:latest
